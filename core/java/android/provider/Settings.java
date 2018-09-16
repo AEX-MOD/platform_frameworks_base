@@ -5112,6 +5112,12 @@ public final class Settings {
         public static final String GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE = "gaming_mode_manual_brightness_toggle";
 
         /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
+        /**
          * Whether to automatically enable the gaming mode
          * if the launched app is a game
          *

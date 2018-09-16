@@ -182,7 +182,6 @@ public class MobileSignalController extends SignalController<
                 Settings.System.SHOW_FOURG_ICON, 0,
                 UserHandle.USER_CURRENT) == 1;
 
-
         mVoLTEicon = Settings.System.getIntForUser(resolver,
                 Settings.System.SHOW_VOLTE_ICON, 1,
                 UserHandle.USER_CURRENT) == 1;
