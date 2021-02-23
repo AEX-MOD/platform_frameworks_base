@@ -5448,6 +5448,13 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         }
     };
 
+    private void updateTelephonyIcons() {
+        USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.USE_OLD_MOBILETYPE, 0,
+            UserHandle.USER_CURRENT) != 0;
+        TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
+    }
+
     public int getWakefulnessState() {
         return mWakefulnessLifecycle.getWakefulness();
     }
@@ -6125,16 +6132,14 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             } else if (uri.equals(Settings.System.getUriFor(
                 Settings.System.STATUS_BAR_TICKER_TICK_DURATION))) {
                 updateTickerTickDuration();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.USE_OLD_MOBILETYPE))) {
+                updateTelephonyIcons();
             }
 
         }
 
         public void update() {
-            ContentResolver resolver = mContext.getContentResolver();
-            USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.USE_OLD_MOBILETYPE, 0,
-                    UserHandle.USER_CURRENT) != 0;
-            TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
             setLockscreenDoubleTapToSleep();
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
@@ -6150,6 +6155,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             updateKeyguardStatusSettings();
             handleCutout(null);
             updateGamingPeekMode();
+            updateTelephonyIcons();
         }
     }
 
